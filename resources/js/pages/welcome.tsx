@@ -66,6 +66,7 @@ export default function Welcome({ canRegister = true }: { canRegister?: boolean 
                     <a
                       href="https://laravel.com/docs"
                       target="_blank"
+                      rel="noreferrer"
                       className="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
                     >
                       <span>Documentation</span>
@@ -97,6 +98,7 @@ export default function Welcome({ canRegister = true }: { canRegister?: boolean 
                     <a
                       href="https://laracasts.com"
                       target="_blank"
+                      rel="noreferrer"
                       className="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
                     >
                       <span>Laracasts</span>
@@ -123,6 +125,7 @@ export default function Welcome({ canRegister = true }: { canRegister?: boolean 
                   <a
                     href="https://cloud.laravel.com"
                     target="_blank"
+                    rel="noreferrer"
                     className="inline-block rounded-sm border border-black bg-[#1b1b18] px-5 py-1.5 text-sm leading-normal text-white hover:border-black hover:bg-black dark:border-[#eeeeec] dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:border-white dark:hover:bg-white"
                   >
                     Deploy now
