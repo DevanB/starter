@@ -5,7 +5,8 @@
     "./node_modules/ultracite/config/oxlint/react/.oxlintrc.json"
   ],
   "rules": {
-    "func-style": ["error", "declaration", { "allowArrowFunctions": true }]
+    "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
+    "import/no-named-as-default-member": "off"
   },
   "ignorePatterns": [
     "bootstrap/ssr",
