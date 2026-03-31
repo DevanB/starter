@@ -9,8 +9,8 @@ export default function AlertError({ errors, title }: { errors: string[]; title?
       <AlertTitle>{title || "Something went wrong."}</AlertTitle>
       <AlertDescription>
         <ul className="list-inside list-disc text-sm">
-          {[...new Set(errors)].map((error, index) => (
-            <li key={index}>{error}</li>
+          {[...new Set(errors)].map((error) => (
+            <li key={error}>{error}</li>
           ))}
         </ul>
       </AlertDescription>
