@@ -88,7 +88,7 @@ export default function TeamsIndex({ teams }: Props) {
 
           {teams.length === 0 ? (
             <p className="text-muted-foreground py-8 text-center">
-              You don't belong to any teams yet.
+              You don&apos;t belong to any teams yet.
             </p>
           ) : null}
         </div>

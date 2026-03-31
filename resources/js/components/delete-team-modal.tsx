@@ -51,14 +51,14 @@ export default function DeleteTeamModal({ team, open, onOpenChange }: Props) {
                 <DialogTitle>Are you sure?</DialogTitle>
                 <DialogDescription>
                   This action cannot be undone. This will permanently delete the team{" "}
-                  <strong>"{team.name}"</strong>.
+                  <strong>&ldquo;{team.name}&rdquo;</strong>.
                 </DialogDescription>
               </DialogHeader>
 
               <div className="space-y-4 py-4">
                 <div className="grid gap-2">
                   <Label htmlFor="confirmation-name">
-                    Type <strong>"{team.name}"</strong> to confirm
+                    Type <strong>&ldquo;{team.name}&rdquo;</strong> to confirm
                   </Label>
                   <Input
                     id="confirmation-name"
