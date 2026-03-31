@@ -35,7 +35,7 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
                   name="email"
                   required
                   autoFocus
-                  tabIndex={1}
+                 
                   autoComplete="email"
                   placeholder="email@example.com"
                 />
@@ -46,7 +46,7 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                   {canResetPassword && (
-                    <TextLink href={request()} className="ml-auto text-sm" tabIndex={5}>
+                    <TextLink href={request()} className="ml-auto text-sm">
                       Forgot password?
                     </TextLink>
                   )}
@@ -55,7 +55,7 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
                   id="password"
                   name="password"
                   required
-                  tabIndex={2}
+                 
                   autoComplete="current-password"
                   placeholder="Password"
                 />
@@ -63,14 +63,14 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
               </div>
 
               <div className="flex items-center space-x-3">
-                <Checkbox id="remember" name="remember" tabIndex={3} />
+                <Checkbox id="remember" name="remember" />
                 <Label htmlFor="remember">Remember me</Label>
               </div>
 
               <Button
                 type="submit"
                 className="mt-4 w-full"
-                tabIndex={4}
+               
                 disabled={processing}
                 data-test="login-button"
               >
@@ -82,7 +82,7 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
             {canRegister && (
               <div className="text-muted-foreground text-center text-sm">
                 Don&apos;t have an account?{" "}
-                <TextLink href={register()} tabIndex={5}>
+                <TextLink href={register()}>
                   Sign up
                 </TextLink>
               </div>
