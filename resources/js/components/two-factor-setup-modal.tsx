@@ -100,11 +100,7 @@ function TwoFactorSetupStep({
 
           <div className="flex w-full space-x-2">
             <div className="border-border flex w-full items-stretch overflow-hidden rounded-xl border">
-              {!manualSetupKey ? (
-                <div className="bg-muted flex h-full w-full items-center justify-center p-3">
-                  <Spinner />
-                </div>
-              ) : (
+              {manualSetupKey ? (
                 <>
                   <input
                     type="text"
@@ -119,6 +115,10 @@ function TwoFactorSetupStep({
                     <IconComponent className="w-4" />
                   </button>
                 </>
+              ) : (
+                <div className="bg-muted flex h-full w-full items-center justify-center p-3">
+                  <Spinner />
+                </div>
               )}
             </div>
           </div>
