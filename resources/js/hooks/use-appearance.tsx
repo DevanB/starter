@@ -52,10 +52,10 @@ const applyTheme = (appearance: Appearance): void => {
   document.documentElement.style.colorScheme = isDark ? "dark" : "light";
 };
 
-const subscribe = (callback: () => void) => {
-  listeners.add(callback);
+const subscribe = (listener: () => void) => {
+  listeners.add(listener);
 
-  return () => listeners.delete(callback);
+  return () => listeners.delete(listener);
 };
 
 const notify = (): void => {

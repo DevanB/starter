@@ -11,15 +11,15 @@ const mql =
     ? undefined
     : window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
 
-function mediaQueryListener(callback: (event: MediaQueryListEvent) => void) {
+function mediaQueryListener(onChange: (event: MediaQueryListEvent) => void) {
   if (!mql) {
     return noop;
   }
 
-  mql.addEventListener("change", callback);
+  mql.addEventListener("change", onChange);
 
   return () => {
-    mql.removeEventListener("change", callback);
+    mql.removeEventListener("change", onChange);
   };
 }
 
