@@ -52,6 +52,8 @@ export function TeamSwitcher({ inHeader = false }: TeamSwitcherProps) {
     });
   };
 
+  const dropdownSide = isMobile ? "bottom" : "right";
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -93,7 +95,7 @@ export function TeamSwitcher({ inHeader = false }: TeamSwitcherProps) {
         className={
           inHeader ? "w-56" : "w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
         }
-        side={inHeader ? undefined : (isMobile ? "bottom" : "right")}
+        side={inHeader ? undefined : dropdownSide}
         align={inHeader ? "end" : "start"}
         sideOffset={inHeader ? undefined : 4}
       >
