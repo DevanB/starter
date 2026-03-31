@@ -125,7 +125,10 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
             <NavigationMenu className="flex h-full items-stretch">
               <NavigationMenuList className="flex h-full items-stretch space-x-2">
                 {mainNavItems.map((item) => (
-                  <NavigationMenuItem key={item.title} className="relative flex h-full items-center">
+                  <NavigationMenuItem
+                    key={item.title}
+                    className="relative flex h-full items-center"
+                  >
                     <Link
                       href={item.href}
                       className={cn(

@@ -62,65 +62,64 @@ function TwoFactorSetupStep({
   ) : (
     <>
       <div className="mx-auto flex max-w-md overflow-hidden">
-            <div className="border-border mx-auto aspect-square w-64 rounded-lg border">
-              <div className="z-10 flex h-full w-full items-center justify-center p-5">
-                {qrCodeSvg ? (
-                  <div
-                    className="aspect-square w-full rounded-lg bg-white p-2"
-                    style={{
-                      filter:
-                        resolvedAppearance === "dark" ? "invert(1) brightness(1.5)" : undefined,
-                    }}
-                  >
-                    <img
-                      src={`data:image/svg+xml;base64,${btoa(qrCodeSvg)}`}
-                      alt="Two-factor authentication QR code"
-                      className="size-full"
-                    />
-                  </div>
-                ) : (
-                  <Spinner />
-                )}
+        <div className="border-border mx-auto aspect-square w-64 rounded-lg border">
+          <div className="z-10 flex h-full w-full items-center justify-center p-5">
+            {qrCodeSvg ? (
+              <div
+                className="aspect-square w-full rounded-lg bg-white p-2"
+                style={{
+                  filter: resolvedAppearance === "dark" ? "invert(1) brightness(1.5)" : undefined,
+                }}
+              >
+                <img
+                  src={`data:image/svg+xml;base64,${btoa(qrCodeSvg)}`}
+                  alt="Two-factor authentication QR code"
+                  className="size-full"
+                />
               </div>
+            ) : (
+              <Spinner />
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex w-full space-x-5">
+        <Button className="w-full" onClick={onNextStep}>
+          {buttonText}
+        </Button>
+      </div>
+
+      <div className="relative flex w-full items-center justify-center">
+        <div className="bg-border absolute inset-0 top-1/2 h-px w-full" />
+        <span className="bg-card relative px-2 py-1">or, enter the code manually</span>
+      </div>
+
+      <div className="flex w-full space-x-2">
+        <div className="border-border flex w-full items-stretch overflow-hidden rounded-xl border">
+          {manualSetupKey ? (
+            <>
+              <input
+                type="text"
+                readOnly
+                value={manualSetupKey}
+                className="bg-background text-foreground h-full w-full p-3 outline-none"
+              />
+              <button
+                type="button"
+                onClick={() => copy(manualSetupKey)}
+                className="border-border hover:bg-muted border-l px-3"
+              >
+                <IconComponent className="w-4" />
+              </button>
+            </>
+          ) : (
+            <div className="bg-muted flex h-full w-full items-center justify-center p-3">
+              <Spinner />
             </div>
-          </div>
-
-          <div className="flex w-full space-x-5">
-            <Button className="w-full" onClick={onNextStep}>
-              {buttonText}
-            </Button>
-          </div>
-
-          <div className="relative flex w-full items-center justify-center">
-            <div className="bg-border absolute inset-0 top-1/2 h-px w-full" />
-            <span className="bg-card relative px-2 py-1">or, enter the code manually</span>
-          </div>
-
-          <div className="flex w-full space-x-2">
-            <div className="border-border flex w-full items-stretch overflow-hidden rounded-xl border">
-              {manualSetupKey ? (
-                <>
-                  <input
-                    type="text"
-                    readOnly
-                    value={manualSetupKey}
-                    className="bg-background text-foreground h-full w-full p-3 outline-none"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => copy(manualSetupKey)}
-                    className="border-border hover:bg-muted border-l px-3"
-                  >
-                    <IconComponent className="w-4" />
-                  </button>
-                </>
-              ) : (
-                <div className="bg-muted flex h-full w-full items-center justify-center p-3">
-                  <Spinner />
-                </div>
-              )}
-            </div>
-          </div>
+          )}
+        </div>
+      </div>
     </>
   );
 }
@@ -151,42 +150,41 @@ function TwoFactorVerificationStep({
         errors?: { confirmTwoFactorAuthentication?: { code?: string } };
       }) => (
         <div ref={pinInputContainerRef} className="relative w-full space-y-3">
-            <div className="flex w-full flex-col items-center space-y-3 py-2">
-              <InputOTP
-                id="otp"
-                name="code"
-                maxLength={OTP_MAX_LENGTH}
-                onChange={setCode}
-                disabled={processing}
-                pattern={REGEXP_ONLY_DIGITS}
-              >
-                <InputOTPGroup>
-                  {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
-                    <InputOTPSlot key={index} index={index} />
-                  ))}
-                </InputOTPGroup>
-              </InputOTP>
-              <InputError message={errors?.confirmTwoFactorAuthentication?.code} />
-            </div>
+          <div className="flex w-full flex-col items-center space-y-3 py-2">
+            <InputOTP
+              id="otp"
+              name="code"
+              maxLength={OTP_MAX_LENGTH}
+              onChange={setCode}
+              disabled={processing}
+              pattern={REGEXP_ONLY_DIGITS}
+            >
+              <InputOTPGroup>
+                {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
+                  <InputOTPSlot key={index} index={index} />
+                ))}
+              </InputOTPGroup>
+            </InputOTP>
+            <InputError message={errors?.confirmTwoFactorAuthentication?.code} />
+          </div>
 
-            <div className="flex w-full space-x-5">
-              <Button
-                type="button"
-                variant="outline"
-                className="flex-1"
-                onClick={onBack}
-                disabled={processing}
-              >
-                Back
-              </Button>
-              <Button
-                type="submit"
-                className="flex-1"
-                disabled={processing || code.length < OTP_MAX_LENGTH}
-              >
-                Confirm
-              </Button>
-            </div>
+          <div className="flex w-full space-x-5">
+            <Button
+              type="button"
+              variant="outline"
+              className="flex-1"
+              onClick={onBack}
+              disabled={processing}
+            >
+              Back
+            </Button>
+            <Button
+              type="submit"
+              className="flex-1"
+              disabled={processing || code.length < OTP_MAX_LENGTH}
+            >
+              Confirm
+            </Button>
           </div>
         </div>
       )}

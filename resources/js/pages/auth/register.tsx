@@ -30,7 +30,6 @@ export default function Register() {
                   type="text"
                   required
                   autoFocus
-                 
                   autoComplete="name"
                   name="name"
                   placeholder="Full name"
@@ -44,7 +43,6 @@ export default function Register() {
                   id="email"
                   type="email"
                   required
-                 
                   autoComplete="email"
                   name="email"
                   placeholder="email@example.com"
@@ -57,7 +55,6 @@ export default function Register() {
                 <PasswordInput
                   id="password"
                   required
-                 
                   autoComplete="new-password"
                   name="password"
                   placeholder="Password"
@@ -70,7 +67,6 @@ export default function Register() {
                 <PasswordInput
                   id="password_confirmation"
                   required
-                 
                   autoComplete="new-password"
                   name="password_confirmation"
                   placeholder="Confirm password"
@@ -78,22 +74,14 @@ export default function Register() {
                 <InputError message={errors.password_confirmation} />
               </div>
 
-              <Button
-                type="submit"
-                className="mt-2 w-full"
-               
-                data-test="register-user-button"
-              >
+              <Button type="submit" className="mt-2 w-full" data-test="register-user-button">
                 {processing && <Spinner />}
                 Create account
               </Button>
             </div>
 
             <div className="text-muted-foreground text-center text-sm">
-              Already have an account?{" "}
-              <TextLink href={login()}>
-                Log in
-              </TextLink>
+              Already have an account? <TextLink href={login()}>Log in</TextLink>
             </div>
           </>
         )}

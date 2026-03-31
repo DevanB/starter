@@ -35,7 +35,6 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
                   name="email"
                   required
                   autoFocus
-                 
                   autoComplete="email"
                   placeholder="email@example.com"
                 />
@@ -55,7 +54,6 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
                   id="password"
                   name="password"
                   required
-                 
                   autoComplete="current-password"
                   placeholder="Password"
                 />
@@ -70,7 +68,6 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
               <Button
                 type="submit"
                 className="mt-4 w-full"
-               
                 disabled={processing}
                 data-test="login-button"
               >
@@ -81,10 +78,7 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
 
             {canRegister && (
               <div className="text-muted-foreground text-center text-sm">
-                Don&apos;t have an account?{" "}
-                <TextLink href={register()}>
-                  Sign up
-                </TextLink>
+                Don&apos;t have an account? <TextLink href={register()}>Sign up</TextLink>
               </div>
             )}
           </>
