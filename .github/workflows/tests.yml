@@ -28,8 +28,11 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Install Node Dependencies
-        run: npm i
+        run: pnpm install
 
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
@@ -41,7 +44,7 @@ jobs:
         run: php artisan key:generate
 
       - name: Build Assets
-        run: npm run build
+        run: pnpm run build
 
       - name: Tests
         run: ./vendor/bin/pest
