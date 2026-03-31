@@ -71,18 +71,18 @@ export default function Security({
           }}
           resetOnError={["password", "password_confirmation", "current_password"]}
           resetOnSuccess
-          onError={(errors) => {
-            if (errors.password) {
+          onError={(formErrors) => {
+            if (formErrors.password) {
               passwordInput.current?.focus();
             }
 
-            if (errors.current_password) {
+            if (formErrors.current_password) {
               currentPasswordInput.current?.focus();
             }
           }}
           className="space-y-6"
         >
-          {({ errors, processing, recentlySuccessful }) => (
+          {({ errors: formErrors, processing, recentlySuccessful }) => (
             <>
               <div className="grid gap-2">
                 <Label htmlFor="current_password">Current password</Label>
@@ -96,7 +96,7 @@ export default function Security({
                   placeholder="Current password"
                 />
 
-                <InputError message={errors.current_password} />
+                <InputError message={formErrors.current_password} />
               </div>
 
               <div className="grid gap-2">
@@ -111,7 +111,7 @@ export default function Security({
                   placeholder="New password"
                 />
 
-                <InputError message={errors.password} />
+                <InputError message={formErrors.password} />
               </div>
 
               <div className="grid gap-2">
@@ -125,7 +125,7 @@ export default function Security({
                   placeholder="Confirm password"
                 />
 
-                <InputError message={errors.password_confirmation} />
+                <InputError message={formErrors.password_confirmation} />
               </div>
 
               <div className="flex items-center gap-4">
