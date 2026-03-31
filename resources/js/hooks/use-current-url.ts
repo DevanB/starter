@@ -37,7 +37,7 @@ export function useCurrentUrl(): UseCurrentUrlReturn {
   const isCurrentUrl: IsCurrentUrlFn = (
     urlToCheck: NonNullable<InertiaLinkProps["href"]>,
     currentUrl?: string,
-    startsWith: boolean = false,
+    startsWith = false,
   ) => {
     const urlToCompare = currentUrl ?? currentUrlPath;
     const urlString = toUrl(urlToCheck);
