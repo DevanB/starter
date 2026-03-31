@@ -13,9 +13,8 @@ import type { BreadcrumbItem as BreadcrumbItemType } from "@/types";
 
 export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: BreadcrumbItemType[] }) {
   return (
-    <>
-      {breadcrumbs.length > 0 && (
-        <Breadcrumb>
+    breadcrumbs.length > 0 ? (
+      <Breadcrumb>
           <BreadcrumbList>
             {breadcrumbs.map((item, index) => {
               const isLast = index === breadcrumbs.length - 1;
@@ -37,7 +36,6 @@ export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: BreadcrumbItemType[]
             })}
           </BreadcrumbList>
         </Breadcrumb>
-      )}
-    </>
+    ) : null
   );
 }

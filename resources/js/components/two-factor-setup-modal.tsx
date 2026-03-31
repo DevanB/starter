@@ -57,13 +57,11 @@ function TwoFactorSetupStep({
   const [copiedText, copy] = useClipboard();
   const IconComponent = copiedText === manualSetupKey ? Check : Copy;
 
-  return (
+  return errors?.length ? (
+    <AlertError errors={errors} />
+  ) : (
     <>
-      {errors?.length ? (
-        <AlertError errors={errors} />
-      ) : (
-        <>
-          <div className="mx-auto flex max-w-md overflow-hidden">
+      <div className="mx-auto flex max-w-md overflow-hidden">
             <div className="border-border mx-auto aspect-square w-64 rounded-lg border">
               <div className="z-10 flex h-full w-full items-center justify-center p-5">
                 {qrCodeSvg ? (
@@ -123,8 +121,6 @@ function TwoFactorSetupStep({
               )}
             </div>
           </div>
-        </>
-      )}
     </>
   );
 }
@@ -154,8 +150,7 @@ function TwoFactorVerificationStep({
         processing: boolean;
         errors?: { confirmTwoFactorAuthentication?: { code?: string } };
       }) => (
-        <>
-          <div ref={pinInputContainerRef} className="relative w-full space-y-3">
+        <div ref={pinInputContainerRef} className="relative w-full space-y-3">
             <div className="flex w-full flex-col items-center space-y-3 py-2">
               <InputOTP
                 id="otp"
@@ -193,7 +188,7 @@ function TwoFactorVerificationStep({
               </Button>
             </div>
           </div>
-        </>
+        </div>
       )}
     </Form>
   );

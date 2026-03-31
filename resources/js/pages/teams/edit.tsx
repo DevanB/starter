@@ -123,9 +123,7 @@ export default function TeamEdit({
               </Form>
             </>
           ) : (
-            <>
-              <Heading variant="small" title={team.name} />
-            </>
+            <Heading variant="small" title={team.name} />
           )}
         </div>
 
