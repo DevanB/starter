@@ -2,6 +2,10 @@ import { useSyncExternalStore } from "react";
 
 const MOBILE_BREAKPOINT = 768;
 
+const noop = () => {
+  /* unsubscribe not needed during SSR */
+};
+
 const mql =
   typeof window === "undefined"
     ? undefined
@@ -9,7 +13,7 @@ const mql =
 
 function mediaQueryListener(callback: (event: MediaQueryListEvent) => void) {
   if (!mql) {
-    return () => undefined;
+    return noop;
   }
 
   mql.addEventListener("change", callback);
