@@ -1,0 +1,22 @@
+// Ultracite oxfmt Configuration
+// https://oxc.rs/docs/guide/usage/formatter/config-file-reference.html
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": [
+    ".agents/**",
+    ".claude/**",
+    "bootstrap/ssr",
+    "node_modules",
+    "public",
+    "resources/js/actions/**",
+    "resources/js/components/ui/*",
+    "resources/js/routes/**",
+    "resources/js/wayfinder/**",
+    "resources/views/mail/*",
+    "tailwind.config.js",
+    "vendor",
+    "vite.config.ts",
+  ],
+  "sortImports": {},
+  "sortTailwindcss": {},
+}
