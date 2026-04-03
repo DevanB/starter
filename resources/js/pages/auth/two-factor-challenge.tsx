@@ -1,5 +1,6 @@
 import { Form, Head, setLayoutProps } from "@inertiajs/react";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
+import { nanoid } from "nanoid";
 import { useMemo, useState } from "react";
 
 import InputError from "@/components/input-error";
@@ -7,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { OTP_MAX_LENGTH } from "@/hooks/use-two-factor-auth";
+
+const otpSlotKeys = Array.from({ length: OTP_MAX_LENGTH }, () => nanoid());
 import { store } from "@/routes/two-factor/login";
 
 export default function TwoFactorChallenge() {
@@ -80,8 +83,8 @@ export default function TwoFactorChallenge() {
                       pattern={REGEXP_ONLY_DIGITS}
                     >
                       <InputOTPGroup>
-                        {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
-                          <InputOTPSlot key={`otp-slot-${index}`} index={index} />
+                        {otpSlotKeys.map((key, slot) => (
+                          <InputOTPSlot key={key} index={slot} />
                         ))}
                       </InputOTPGroup>
                     </InputOTP>

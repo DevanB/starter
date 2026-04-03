@@ -1,11 +1,15 @@
 import { Form } from "@inertiajs/react";
 import { Eye, EyeOff, LockKeyhole, RefreshCw } from "lucide-react";
+import { nanoid } from "nanoid";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import AlertError from "@/components/alert-error";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { regenerateRecoveryCodes } from "@/routes/two-factor";
+
+const SKELETON_COUNT = 8;
+const skeletonKeys = Array.from({ length: SKELETON_COUNT }, () => nanoid());
 
 interface Props {
   recoveryCodesList: string[];
@@ -114,9 +118,9 @@ export default function TwoFactorRecoveryCodes({
                     ))
                   ) : (
                     <div className="space-y-2" aria-label="Loading recovery codes">
-                      {Array.from({ length: 8 }, (_, index) => (
+                      {skeletonKeys.map((key) => (
                         <div
-                          key={`skeleton-${index}`}
+                          key={key}
                           className="bg-muted-foreground/20 h-4 animate-pulse rounded"
                           aria-hidden="true"
                         />

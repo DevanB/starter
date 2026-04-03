@@ -1,6 +1,7 @@
 import { Form } from "@inertiajs/react";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { Check, Copy, ScanLine } from "lucide-react";
+import { nanoid } from "nanoid";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import AlertError from "@/components/alert-error";
@@ -19,6 +20,8 @@ import { useAppearance } from "@/hooks/use-appearance";
 import { useClipboard } from "@/hooks/use-clipboard";
 import { OTP_MAX_LENGTH } from "@/hooks/use-two-factor-auth";
 import { confirm } from "@/routes/two-factor";
+
+const otpSlotKeys = Array.from({ length: OTP_MAX_LENGTH }, () => nanoid());
 
 function GridScanIcon() {
   return (
@@ -158,8 +161,8 @@ function TwoFactorVerificationStep({
               pattern={REGEXP_ONLY_DIGITS}
             >
               <InputOTPGroup>
-                {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
-                  <InputOTPSlot key={`otp-slot-${index}`} index={index} />
+                {otpSlotKeys.map((key, slot) => (
+                  <InputOTPSlot key={key} index={slot} />
                 ))}
               </InputOTPGroup>
             </InputOTP>
