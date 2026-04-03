@@ -161,7 +161,7 @@ function TwoFactorVerificationStep({
             >
               <InputOTPGroup>
                 {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
-                  <InputOTPSlot key={index} index={index} />
+                  <InputOTPSlot key={`otp-slot-${index}`} index={index} />
                 ))}
               </InputOTPGroup>
             </InputOTP>

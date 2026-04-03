@@ -116,7 +116,7 @@ export default function TwoFactorRecoveryCodes({
                     <div className="space-y-2" aria-label="Loading recovery codes">
                       {Array.from({ length: 8 }, (_, index) => (
                         <div
-                          key={index}
+                          key={`skeleton-${index}`}
                           className="bg-muted-foreground/20 h-4 animate-pulse rounded"
                           aria-hidden="true"
                         />
