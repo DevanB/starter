@@ -1,14 +1,7 @@
 {
   "scripts": {
-    "setup": [
-      "mise trust",
-      "herd link",
-      "herd secure"
-    ],
-    "archive": [
-      "herd unsecure",
-      "herd unlink"
-    ],
+    "setup": ["mise trust", "herd link", "herd secure"],
+    "archive": ["herd unsecure", "herd unlink"],
     "run": [
       {
         "label": "Dev Server",
