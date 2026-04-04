@@ -9,7 +9,7 @@
     "dev": "vite",
     "fix": "ultracite fix",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "lefthook install",
+    "prepare": "test -n \"$CI\" || lefthook install",
     "doctor": "react-doctor . --verbose",
     "types:check": "tsc --noEmit"
   },
