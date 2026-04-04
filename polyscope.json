@@ -1,0 +1,34 @@
+{
+  "scripts": {
+    "setup": [
+      "mise trust",
+      "herd link",
+      "herd secure"
+    ],
+    "archive": [
+      "herd unsecure",
+      "herd unlink"
+    ],
+    "run": [
+      {
+        "label": "Dev Server",
+        "command": "composer run dev",
+        "autostart": true
+      },
+      {
+        "label": "Tests",
+        "command": "composer run test"
+      }
+    ]
+  },
+  "runMode": "replace",
+  "preview": {
+    "url": "http://{{folder}}.test"
+  },
+  "tasks": [
+    {
+      "label": "Security review",
+      "prompt": "Review the codebase for security vulnerabilities..."
+    }
+  ]
+}
