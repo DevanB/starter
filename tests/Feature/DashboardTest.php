@@ -22,3 +22,14 @@ test('authenticated users can visit the dashboard', function (): void {
 
     $response->assertOk();
 });
+
+test('unverified users are redirected to the email verification prompt', function (): void {
+    $user = User::factory()->unverified()->create();
+    $team = $user->currentTeam;
+
+    $response = $this
+        ->actingAs($user)
+        ->get(route('dashboard'));
+
+    $response->assertRedirect(route('verification.notice'));
+});
