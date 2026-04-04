@@ -51,7 +51,7 @@ final class Team extends Model
     /**
      * Get all members of this team.
      *
-     * @return BelongsToMany<User, $this>
+     * @return BelongsToMany<User, $this, Membership>
      */
     public function members(): BelongsToMany
     {
