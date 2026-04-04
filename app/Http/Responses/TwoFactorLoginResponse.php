@@ -21,6 +21,6 @@ final class TwoFactorLoginResponse implements TwoFactorLoginResponseContract
 
         return $request->wantsJson()
             ? new JsonResponse(['two_factor' => false], 200)
-            : redirect()->intended("/{$team->slug}/dashboard");
+            : redirect()->intended(sprintf('/%s/dashboard', $team->slug));
     }
 }
