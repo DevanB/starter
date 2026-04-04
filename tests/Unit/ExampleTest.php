@@ -3,5 +3,5 @@
 declare(strict_types=1);
 
 test('that true is true', function () {
-    expect(true)->toBeTrue();
+    expect(1 + 1)->toBe(2);
 });
