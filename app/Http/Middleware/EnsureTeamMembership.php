@@ -48,7 +48,7 @@ final class EnsureTeamMembership
 
         abort_if(
             $requiredRole === null ||
-            !$role instanceof \App\Enums\TeamRole ||
+            ! $role instanceof TeamRole ||
             ! $role->isAtLeast($requiredRole),
             403,
         );

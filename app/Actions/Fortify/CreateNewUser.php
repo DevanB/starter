@@ -16,6 +16,7 @@ final class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
     use ProfileValidationRules;
+
     public function __construct(private CreateTeam $createTeam)
     {
         //

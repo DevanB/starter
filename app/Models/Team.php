@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Concerns\GeneratesUniqueTeamSlugs;
 use App\Enums\TeamRole;
-use Database\Factories\TeamFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +19,7 @@ final class Team extends Model
     use GeneratesUniqueTeamSlugs;
     use HasFactory;
     use SoftDeletes;
+
     /**
      * Get the attributes that should be cast.
      *
