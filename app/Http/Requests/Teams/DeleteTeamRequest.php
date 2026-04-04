@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Teams;
 
+use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -33,6 +34,8 @@ final class DeleteTeamRequest extends FormRequest
 
     /**
      * Configure the validator instance.
+     *
+     * @return array<int, Closure(Validator): void>
      */
     public function after(): array
     {
