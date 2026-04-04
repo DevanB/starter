@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Override;
 
 #[Fillable(['team_id', 'user_id', 'role'])]
 final class Membership extends Pivot
@@ -18,7 +19,7 @@ final class Membership extends Pivot
      *
      * @var bool
      */
-    #[\Override]
+    #[Override]
     public $incrementing = true;
 
     /**
@@ -26,7 +27,7 @@ final class Membership extends Pivot
      *
      * @var string
      */
-    #[\Override]
+    #[Override]
     protected $table = 'team_members';
 
     /**
