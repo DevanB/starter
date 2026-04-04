@@ -91,7 +91,7 @@ final class TeamInvitation extends Model
     {
         parent::boot();
 
-        self::creating(function (TeamInvitation $invitation) {
+        self::creating(function (TeamInvitation $invitation): void {
             if (empty($invitation->code)) {
                 $invitation->code = Str::random(64);
             }

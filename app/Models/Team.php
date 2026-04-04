@@ -17,9 +17,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[Fillable(['name', 'slug', 'is_personal'])]
 final class Team extends Model
 {
-    /** @use HasFactory<TeamFactory> */
-    use GeneratesUniqueTeamSlugs, HasFactory, SoftDeletes;
-
+    use GeneratesUniqueTeamSlugs;
+    use HasFactory;
+    use SoftDeletes;
     /**
      * Get the attributes that should be cast.
      *
@@ -90,15 +90,15 @@ final class Team extends Model
     {
         parent::boot();
 
-        self::creating(function (Team $team) {
+        self::creating(function (Team $team): void {
             if (empty($team->slug)) {
-                $team->slug = static::generateUniqueTeamSlug($team->name);
+                $team->slug = self::generateUniqueTeamSlug($team->name);
             }
         });
 
-        self::updating(function (Team $team) {
+        self::updating(function (Team $team): void {
             if ($team->isDirty('name')) {
-                $team->slug = static::generateUniqueTeamSlug($team->name, $team->id);
+                $team->slug = self::generateUniqueTeamSlug($team->name, $team->id);
             }
         });
     }

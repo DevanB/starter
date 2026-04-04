@@ -18,9 +18,10 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
 final class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
-    use HasFactory, HasTeams, Notifiable, TwoFactorAuthenticatable;
-
+    use HasFactory;
+    use HasTeams;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
     /**
      * Get the attributes that should be cast.
      *
