@@ -9,7 +9,9 @@ use App\Enums\TeamRole;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Teams\DeleteTeamRequest;
 use App\Http\Requests\Teams\SaveTeamRequest;
+use App\Models\Membership;
 use App\Models\Team;
+use App\Models\TeamInvitation as TeamInvitationModel;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -56,18 +58,23 @@ final class TeamController extends Controller
                 'slug' => $team->slug,
                 'isPersonal' => $team->is_personal,
             ],
-            'members' => $team->members()->get()->map(fn ($member): array => [
-                'id' => $member->id,
-                'name' => $member->name,
-                'email' => $member->email,
-                'avatar' => $member->avatar ?? null,
-                'role' => $member->pivot->role->value,
-                'role_label' => $member->pivot->role?->label(),
-            ]),
+            'members' => $team->members()->get()->map(function (User $member): array {
+                /** @var Membership $membership */
+                $membership = $member->pivot;
+
+                return [
+                    'id' => $member->id,
+                    'name' => $member->name,
+                    'email' => $member->email,
+                    'avatar' => null,
+                    'role' => $membership->role->value,
+                    'role_label' => $membership->role->label(),
+                ];
+            }),
             'invitations' => $team->invitations()
                 ->whereNull('accepted_at')
                 ->get()
-                ->map(fn ($invitation): array => [
+                ->map(fn (TeamInvitationModel $invitation): array => [
                     'code' => $invitation->code,
                     'email' => $invitation->email,
                     'role' => $invitation->role->value,
