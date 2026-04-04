@@ -113,6 +113,19 @@ test('team invitations cannot be created by members', function (): void {
     $response->assertForbidden();
 });
 
+test('team invitations cannot be created for missing teams', function (): void {
+    $owner = User::factory()->create();
+
+    $response = $this
+        ->actingAs($owner)
+        ->post(route('teams.invitations.store', ['team' => 999_999]), [
+            'email' => 'invited@example.com',
+            'role' => TeamRole::Member->value,
+        ]);
+
+    $response->assertNotFound();
+});
+
 test('team invitations can be cancelled by owners', function (): void {
     $owner = User::factory()->create();
     $team = Team::factory()->create();
