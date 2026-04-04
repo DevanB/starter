@@ -1,7 +1,7 @@
 import { Transition } from "@headlessui/react";
 import { Form, Head, router } from "@inertiajs/react";
 import { ChevronDown, Mail, UserPlus, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import CancelInvitationModal from "@/components/cancel-invitation-modal";
 import DeleteTeamModal from "@/components/delete-team-modal";
@@ -45,15 +45,13 @@ export default function TeamEdit({
 
   const [inviteDialogOpen, setInviteDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [removeMemberDialogOpen, setRemoveMemberDialogOpen] = useState(false);
   const [memberToRemove, setMemberToRemove] = useState<TeamMember | null>(null);
-  const [cancelInvitationDialogOpen, setCancelInvitationDialogOpen] = useState(false);
   const [invitationToCancel, setInvitationToCancel] = useState<TeamInvitation | null>(null);
 
-  const pageTitle = useMemo(
-    () => (permissions.canUpdateTeam ? `Edit ${team.name}` : `View ${team.name}`),
-    [permissions.canUpdateTeam, team.name],
-  );
+  const removeMemberDialogOpen = memberToRemove !== null;
+  const cancelInvitationDialogOpen = invitationToCancel !== null;
+
+  const pageTitle = permissions.canUpdateTeam ? `Edit ${team.name}` : `View ${team.name}`;
 
   const updateMemberRole = (member: TeamMember, newRole: string) => {
     router.visit(updateMember([team.slug, member.id]), {
@@ -64,12 +62,10 @@ export default function TeamEdit({
 
   const confirmRemoveMember = (member: TeamMember) => {
     setMemberToRemove(member);
-    setRemoveMemberDialogOpen(true);
   };
 
   const confirmCancelInvitation = (invitation: TeamInvitation) => {
     setInvitationToCancel(invitation);
-    setCancelInvitationDialogOpen(true);
   };
 
   return (
@@ -297,14 +293,22 @@ export default function TeamEdit({
         team={team}
         member={memberToRemove}
         open={removeMemberDialogOpen}
-        onOpenChange={setRemoveMemberDialogOpen}
+        onOpenChange={(open) => {
+          if (!open) {
+            setMemberToRemove(null);
+          }
+        }}
       />
 
       <CancelInvitationModal
         team={team}
         invitation={invitationToCancel}
         open={cancelInvitationDialogOpen}
-        onOpenChange={setCancelInvitationDialogOpen}
+        onOpenChange={(open) => {
+          if (!open) {
+            setInvitationToCancel(null);
+          }
+        }}
       />
 
       {permissions.canDeleteTeam && !team.isPersonal ? (

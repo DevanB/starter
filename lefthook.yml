@@ -10,3 +10,14 @@ pre-commit:
         - "**/*.jsonc"
         - "**/*.css"
       stage_fixed: true
+    - name: react-doctor
+      run: |
+        score=$(pnpm react-doctor . --score --diff 2>/dev/null)
+        if [ "$score" != "100" ]; then
+          echo "react-doctor score is $score/100 (required: 100)"
+          echo "Run 'pnpm doctor' for details."
+          exit 1
+        fi
+      glob:
+        - "**/*.jsx"
+        - "**/*.tsx"

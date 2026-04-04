@@ -1,0 +1,35 @@
+name: react-doctor
+
+on:
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  react-doctor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: millionco/react-doctor@main
+        id: doctor
+        with:
+          diff: master
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: "24"
+
+      - name: Enforce perfect score
+        if: always()
+        run: |
+          score="${{ steps.doctor.outputs.score }}"
+          echo "React Doctor score: $score/100"
+          if [ "$score" != "100" ]; then
+            echo "::error::React Doctor score is $score/100 (required: 100). Run 'pnpm doctor' locally for details."
+            exit 1
+          fi

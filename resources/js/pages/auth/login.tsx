@@ -34,7 +34,6 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
                   type="email"
                   name="email"
                   required
-                  autoFocus
                   autoComplete="email"
                   placeholder="email@example.com"
                 />

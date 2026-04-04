@@ -29,7 +29,6 @@ export default function Register() {
                   id="name"
                   type="text"
                   required
-                  autoFocus
                   autoComplete="name"
                   name="name"
                   placeholder="Full name"

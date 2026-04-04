@@ -9,7 +9,8 @@
     "dev": "vite",
     "fix": "ultracite fix",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "lefthook install",
+    "prepare": "test -n \"$CI\" || lefthook install",
+    "doctor": "react-doctor . --verbose",
     "types:check": "tsc --noEmit"
   },
   "dependencies": {
@@ -40,6 +41,7 @@
     "input-otp": "1.4.2",
     "laravel-vite-plugin": "3.0.0",
     "lucide-react": "0.475.0",
+    "nanoid": "5.1.7",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "tailwind-merge": "3.0.1",
@@ -55,6 +57,7 @@
     "lefthook": "2.1.4",
     "oxfmt": "0.42.0",
     "oxlint": "1.57.0",
+    "react-doctor": "0.0.30",
     "ultracite": "7.3.2"
   },
   "optionalDependencies": {
