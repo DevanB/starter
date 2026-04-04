@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Teams;
 
+use App\Models\Team;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Validator;
+use LogicException;
 
 final class DeleteTeamRequest extends FormRequest
 {
@@ -17,7 +19,7 @@ final class DeleteTeamRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('delete', $this->route('team'));
+        return Gate::allows('delete', $this->team());
     }
 
     /**
@@ -41,12 +43,23 @@ final class DeleteTeamRequest extends FormRequest
     {
         return [
             function (Validator $validator): void {
-                $team = $this->route('team');
+                $team = $this->team();
 
                 if ($this->input('name') !== $team->name) {
                     $validator->errors()->add('name', 'The team name does not match.');
                 }
             },
         ];
+    }
+
+    private function team(): Team
+    {
+        $team = $this->route('team');
+
+        if (! $team instanceof Team) {
+            throw new LogicException('The team route parameter must be a team model.');
+        }
+
+        return $team;
     }
 }
