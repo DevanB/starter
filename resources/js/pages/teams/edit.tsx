@@ -294,7 +294,9 @@ export default function TeamEdit({
         member={memberToRemove}
         open={removeMemberDialogOpen}
         onOpenChange={(open) => {
-          if (!open) setMemberToRemove(null);
+          if (!open) {
+            setMemberToRemove(null);
+          }
         }}
       />
 
@@ -303,7 +305,9 @@ export default function TeamEdit({
         invitation={invitationToCancel}
         open={cancelInvitationDialogOpen}
         onOpenChange={(open) => {
-          if (!open) setInvitationToCancel(null);
+          if (!open) {
+            setInvitationToCancel(null);
+          }
         }}
       />
 
