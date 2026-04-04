@@ -6,7 +6,10 @@ import type { AppLayoutProps, BreadcrumbItem } from "@/types";
 
 const EMPTY_BREADCRUMBS: BreadcrumbItem[] = [];
 
-export default function AppSidebarLayout({ children, breadcrumbs = EMPTY_BREADCRUMBS }: AppLayoutProps) {
+export default function AppSidebarLayout({
+  children,
+  breadcrumbs = EMPTY_BREADCRUMBS,
+}: AppLayoutProps) {
   return (
     <AppShell variant="sidebar">
       <AppSidebar />
