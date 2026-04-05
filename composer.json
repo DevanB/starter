@@ -47,6 +47,26 @@
     }
   },
   "scripts": {
+    "worktree-setup": [
+      "mise activate",
+      "mise trust",
+      "mise install",
+      "node -v",
+      "which node",
+      "herd link",
+      "herd secure",
+      "composer install",
+      "@php -r \"file_exists('.env') || copy('$SUPERSET_ROOT_PATH/.env', '.env');\"",
+      "@php artisan key:generate --ansi",
+      "@php artisan db:wipe --ansi",
+      "@php artisan migrate --seed --force --ansi",
+      "npm install",
+      "npm run build"
+    ],
+    "worktree-teardown": [
+      "herd unsecure",
+      "herd unlink"
+    ],
     "setup": [
       "composer install",
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",

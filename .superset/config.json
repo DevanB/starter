@@ -1,5 +1,5 @@
 {
-  "setup": [],
-  "teardown": [],
-  "run": []
+  "setup": ["composer run worktree-setup"],
+  "teardown": ["composer run worktree-teardown"],
+  "run": ["composer run dev"]
 }
