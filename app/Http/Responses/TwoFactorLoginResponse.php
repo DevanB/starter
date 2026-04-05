@@ -13,7 +13,7 @@ final class TwoFactorLoginResponse implements TwoFactorLoginResponseContract
     public function toResponse($request): Response
     {
         $user = $request->user();
-        $team = $user?->currentTeam ?? $user?->personalTeam();
+        $team = $user->currentTeam ?? $user->personalTeam();
 
         if (! $team) {
             abort(403);

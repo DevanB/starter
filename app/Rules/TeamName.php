@@ -28,6 +28,8 @@ final class TeamName implements ValidationRule
 
     /**
      * Get a list of all reserved names.
+     *
+     * @return array<int, string>
      */
     private function reservedNames(): array
     {
@@ -370,6 +372,8 @@ final class TeamName implements ValidationRule
 
     /**
      * Get a list of reserved names from the application's route prefixes.
+     *
+     * @return array<int, string>
      */
     private function routesPrefixes(): array
     {

@@ -141,6 +141,18 @@ test('team deletion requires name confirmation', function (): void {
     ]);
 });
 
+test('missing teams cannot be deleted', function (): void {
+    $user = User::factory()->create();
+
+    $response = $this
+        ->actingAs($user)
+        ->delete(route('teams.destroy', ['team' => 999_999]), [
+            'name' => 'Missing Team',
+        ]);
+
+    $response->assertNotFound();
+});
+
 test('deleting current team switches to alphabetically first remaining team', function (): void {
     $user = User::factory()->create(['name' => 'Mike']);
 
